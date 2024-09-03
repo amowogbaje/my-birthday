@@ -39,6 +39,16 @@
         </div>
     </div>
 
+    <div id="edit-comment-modal" class="modal">
+        <div class="modal-content comment-form">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Edit Comment</h2>
+            <input id="edit-comment-name" placeholder="Your name here" />
+            <textarea id="edit-comment-text" placeholder="Write your birthday wishes here..."></textarea>
+            <button onclick="submitEdit()">Save Changes</button>
+        </div>
+    </div>
+
     <script>
         const apiBaseUrl = 'https://staging.gracefilledcollege.com/api';
 
@@ -60,12 +70,13 @@
                 const commentElement = document.createElement('div');
                 commentElement.classList.add('comment');
                 commentElement.innerHTML = `
-                    <p><strong>${comment.name}:</strong> ${comment.content}</p>
-                    <button onclick="editComment(${comment.id})">Edit</button>
-                `;
+            <p><strong>${comment.name}:</strong> ${comment.content}</p>
+            <button onclick="editComment(${comment.id}, '${comment.name}', '${comment.content}')">Edit</button>
+        `;
                 commentsList.appendChild(commentElement);
             });
         }
+
 
         async function postComment(body) {
             try {
@@ -117,11 +128,31 @@
 
         fetchComments();
 
-        function editComment(commentId) {
-            const content = prompt('Edit your comment:');
-            if (content) {
-                updateComment(commentId, { content });
+        let editingCommentId = null;
+
+        function openModal(commentId, name, content) {
+            editingCommentId = commentId;
+            document.getElementById('edit-comment-name').value = name;
+            document.getElementById('edit-comment-text').value = content;
+            document.getElementById('edit-comment-modal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('edit-comment-modal').style.display = 'none';
+        }
+
+        function submitEdit() {
+            const name = document.getElementById('edit-comment-name').value.trim() === '' ? 'Anonymous' : document.getElementById('edit-comment-name').value;
+            const content = document.getElementById('edit-comment-text').value;
+
+            if (editingCommentId !== null) {
+                updateComment(editingCommentId, { content, name });
+                closeModal();
             }
+        }
+
+        function editComment(commentId, name, content) {
+            openModal(commentId, name, content);
         }
     </script>
 </body>
