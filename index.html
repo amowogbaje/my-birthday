@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Birthday Celebration Page</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <div class="container">
         <div class="celebrant-section">
@@ -53,7 +55,7 @@
 
         function displayComments(comments) {
             const commentsList = document.getElementById('comments-list');
-            commentsList.innerHTML = ''; 
+            commentsList.innerHTML = '';
             comments.forEach(comment => {
                 const commentElement = document.createElement('div');
                 commentElement.classList.add('comment');
@@ -76,7 +78,7 @@
                 });
                 const result = await response.json();
                 if (response.ok) {
-                    fetchComments(); 
+                    fetchComments();
                 } else {
                     console.error('Error posting comment:', result);
                 }
@@ -96,7 +98,7 @@
                 });
                 const result = await response.json();
                 if (response.ok) {
-                    fetchComments(); 
+                    fetchComments();
                 } else {
                     console.error('Error updating comment:', result);
                 }
@@ -108,8 +110,9 @@
         document.getElementById('comment-form').addEventListener('submit', event => {
             event.preventDefault();
             const content = document.getElementById('comment-text').value;
-            const name = document.getElementById('comment-name').value;
-            postComment({content, name});
+            const nameInput = document.getElementById('comment-name').value;
+            const name = nameInput.trim() === '' ? 'Anonymous' : nameInput;
+            postComment({ content, name });
         });
 
         fetchComments();
@@ -117,9 +120,10 @@
         function editComment(commentId) {
             const content = prompt('Edit your comment:');
             if (content) {
-                updateComment(commentId, {content});
+                updateComment(commentId, { content });
             }
         }
     </script>
 </body>
+
 </html>
