@@ -1,0 +1,174 @@
+{
+  "status_code": 200,
+  "message": "Comments retrieved successfully.",
+  "data": [
+    {
+      "id": 37,
+      "name": "Olojede Olupegba Bola",
+      "content": "It's nice meeting you, Amowogaje Gideon\nCongratulations and Happy Birthday. I wish you long life, good health and God's favour in every of your endavour.",
+      "created_at": "2024-09-05T17:49:44.000000Z",
+      "updated_at": "2024-09-05T17:49:44.000000Z",
+      "deleted_at": null
+    },
+    {
+      "id": 36,
+      "name": "Olaleye",
+      "content": "Happy belated birthday! What a lovely idea.",
+      "created_at": "2024-09-05T11:19:17.000000Z",
+      "updated_at": "2024-09-05T11:19:17.000000Z",
+      "deleted_at": null
+    },
+    {
+      "id": 35,
+      "name": "Ameenah",
+      "content": "Happy birthday Gideon! You are an amazing person and I hope you know that.\n\nThank you for always helping out, I hope your path gets more clearer and brighter.\n\nHave fun!",
+      "created_at": "2024-09-05T09:52:04.000000Z",
+      "updated_at": "2024-09-05T09:52:04.000000Z",
+      "deleted_at": null
+    },
+    {
+      "id": 34,
+      "name": "Anon",
+      "content": "Happy Birthday boss!",
+      "created_at": "2024-09-05T08:19:22.000000Z",
+      "updated_at": "2024-09-05T08:19:22.000000Z",
+      "deleted_at": null
+    },
+    {
+      "id": 32,
+      "name": "Matthew",
+      "content": "Don't drip too much",
+      "created_at": "2024-09-05T08:14:33.000000Z",
+      "updated_at": "2024-09-05T08:14:33.000000Z",
+      "deleted_at": null
+    },
+    {
+      "id": 31,
+      "name": "Akash",
+      "content": "Happy birthday",
+      "created_at": "2024-09-05T08:05:18.000000Z",
+      "updated_at": "2024-09-05T08:05:18.000000Z",
+      "deleted_at": null
+    },
+    {
+      "id": 30,
+      "name": "Esther Rotowa",
+      "content": "Happy Birthday Gideon.\nIt was a privilege meeting you.\nWishing you a wonder-filled and amazing year ahead.\nRooting for you.\nBreakdown those barriers.\nYou're a warrior and you're unique",
+      "created_at": "2024-09-04T20:47:26.000000Z",
+      "updated_at": "2024-09-04T20:47:26.000000Z",
+      "deleted_at": null
+    },
+    {
+      "id": 29,
+      "name": "Timiajayi",
+      "content": "HAPPY BITHDAY BOSS WISHING YOU ALL THE BEST LIFE HAS TO OFFER",
+      "created_at": "2024-09-04T19:39:47.000000Z",
+      "updated_at": "2024-09-04T19:39:47.000000Z",
+      "deleted_at": null
+    },
+    {
+      "id": 28,
+      "name": "Osita",
+      "content": "Happy birthday bro, I wish you long life, good health, more money (this is importanter) and favour in all you do. Cheers to a new year!!!",
+      "created_at": "2024-09-04T16:12:58.000000Z",
+      "updated_at": "2024-09-04T16:12:58.000000Z",
+      "deleted_at": null
+    },
+    {
+      "id": 26,
+      "name": "Johnmicheal",
+      "content": "May God grant you long life most importantly, and every good thing that comes with it. Happy birthday",
+      "created_at": "2024-09-04T14:10:37.000000Z",
+      "updated_at": "2024-09-04T14:10:37.000000Z",
+      "deleted_at": null
+    },
+    {
+      "id": 27,
+      "name": "Johnmicheal",
+      "content": "May God grant you long life most importantly, and every good thing that comes with it. Happy birthday",
+      "created_at": "2024-09-04T14:10:37.000000Z",
+      "updated_at": "2024-09-04T14:10:37.000000Z",
+      "deleted_at": null
+    },
+    {
+      "id": 25,
+      "name": "JidNation",
+      "content": "Happy Birthday boss",
+      "created_at": "2024-09-04T13:27:48.000000Z",
+      "updated_at": "2024-09-04T13:27:48.000000Z",
+      "deleted_at": null
+    },
+    {
+      "id": 13,
+      "name": "Asaph",
+      "content": "I celebrate God’s grace in your Life. And toys new year will be your biggest year yet.\n\nHappy birthday sir Gideon.",
+      "created_at": "2024-09-04T07:20:06.000000Z",
+      "updated_at": "2024-09-04T07:20:06.000000Z",
+      "deleted_at": null
+    },
+    {
+      "id": 10,
+      "name": "Null",
+      "content": "Null",
+      "created_at": "2024-09-04T01:53:15.000000Z",
+      "updated_at": "2024-09-04T01:53:15.000000Z",
+      "deleted_at": null
+    },
+    {
+      "id": 9,
+      "name": "John Doex",
+      "content": "Happy Birthday Gideon, more blessings upon you and yours in Jesus name.",
+      "created_at": "2024-09-03T22:45:15.000000Z",
+      "updated_at": "2024-09-04T01:53:35.000000Z",
+      "deleted_at": null
+    },
+    {
+      "id": 8,
+      "name": "Null",
+      "content": "Happy birthday",
+      "created_at": "2024-09-03T21:28:59.000000Z",
+      "updated_at": "2024-09-03T21:28:59.000000Z",
+      "deleted_at": null
+    },
+    {
+      "id": 7,
+      "name": "Alphacodez",
+      "content": "Happy birthday gem. Wishing you a delightful existence",
+      "created_at": "2024-09-03T21:00:50.000000Z",
+      "updated_at": "2024-09-03T21:00:50.000000Z",
+      "deleted_at": null
+    },
+    {
+      "id": 6,
+      "name": "Tulbadex",
+      "content": "Nice knowing and happy to celebrate you, enjoy the fullest of your day",
+      "created_at": "2024-09-03T19:28:53.000000Z",
+      "updated_at": "2024-09-03T19:28:53.000000Z",
+      "deleted_at": null
+    },
+    {
+      "id": 5,
+      "name": "Ibukun",
+      "content": "Happy Birthday Gideon. Wish you the best and greatest heights.",
+      "created_at": "2024-09-03T15:15:03.000000Z",
+      "updated_at": "2024-09-03T15:15:03.000000Z",
+      "deleted_at": null
+    },
+    {
+      "id": 3,
+      "name": "ND",
+      "content": "Happy birthday Gideon. May this new year usher in fresh anointing and more grace. Do have a wonderful year ahead. Cheers 🥂",
+      "created_at": "2024-09-03T12:08:59.000000Z",
+      "updated_at": "2024-09-03T12:08:59.000000Z",
+      "deleted_at": null
+    },
+    {
+      "id": 4,
+      "name": "ND",
+      "content": "Happy birthday Gideon. May this new year usher in fresh anointing and more grace. Do have a wonderful year ahead. Cheers 🥂",
+      "created_at": "2024-09-03T12:08:59.000000Z",
+      "updated_at": "2024-09-03T12:08:59.000000Z",
+      "deleted_at": null
+    }
+  ]
+}
