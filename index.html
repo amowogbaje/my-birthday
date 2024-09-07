@@ -71,9 +71,8 @@
                 commentElement.classList.add('comment');
                 commentElement.innerHTML = `
             <p><strong>${comment.name}:</strong> ${comment.content}</p>
-            <button onclick="editComment(${comment.id}, ${JSON.stringify(comment.name)}, ${JSON.stringify(comment.content)})">
-
-        `;
+                    <button onclick="editComment(${comment.id}, ${JSON.stringify(comment.name)}, ${JSON.stringify(comment.content)})">Edit</button>
+                 `;
                 commentsList.appendChild(commentElement);
             });
         }
