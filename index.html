@@ -6,14 +6,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Birthday Celebration Page</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body>
     <div class="container">
-        <div class="celebrant-section">
-            <img src="gregerhabor.JPG" alt="Celebrant Picture" class="celebrant-picture">
-            <h1 class="celebrant-name">Happy birthday, Gregory Erhabor!</h1>
+        <div
+            class="grid grid-cols-1 md:grid-cols-3 gap-4 p-6 bg-gradient-to-tr from-pink-50 via-white to-purple-50 rounded-xl shadow-2xl">
+            <!-- Image 1 -->
+            <div class="relative group rounded-xl overflow-hidden shadow-lg">
+                <img src="gregerhabor.JPG" alt="Celebrant"
+                    class="w-full h-full object-cover transform transition duration-300 group-hover:scale-105" />
+            </div>
+
+            <!-- Middle Image + Text Overlay -->
+            <div class="relative rounded-xl overflow-hidden shadow-2xl">
+                <!-- <img src="" alt="Celebrant" class="w-full h-full object-cover brightness-90" /> -->
+
+                <!-- Overlay Text -->
+                <div class="absolute inset-0 bg-black flex flex-col items-center justify-center text-center px-4">
+                    <h1 class="text-3xl md:text-4xl font-extrabold text-white drop-shadow-lg leading-tight">
+                        Happy Birthday <br />
+                        <span
+                            class="bg-gradient-to-r from-red-300 via-pink-500 to-purple-500 text-transparent bg-clip-text">
+                            Gregory Erhabor!
+                        </span>
+                    </h1>
+                    <p class="mt-2 text-white/90 font-medium text-lg">
+                        May your day shine as brightly as your smile ✨
+                    </p>
+                </div>
+            </div>
+
+            <!-- Image 3 -->
+            <div class="relative group rounded-xl overflow-hidden shadow-lg">
+                <img src="gregerhaborwife.jpg" alt="Celebrant"
+                    class="w-full h-full object-cover transform transition duration-300 group-hover:scale-105" />
+            </div>
         </div>
+
 
         <!-- <div class="gift-section">
             <h2>Send a Gift</h2>
@@ -23,19 +54,26 @@
         </div> -->
 
         <div class="comments-section">
-            <h2>Write your wish</h2>
-            <form id="comment-form" class="comment-form">
-                <input id="comment-name" placeholder="Your name here" />
-                <textarea id="comment-text" placeholder="Write your birthday wishes here..." required></textarea>
-                <button type="submit" class="submit-button">Make wish</button>
+            <h2 class="text-xl text-center font-semibold">Write your wish</h2>
+            <form id="comment-form" class="space-y-4 bg-white p-6 rounded-lg shadow-md max-w-xl mx-auto">
+                <input id="comment-name" placeholder="Your name here"
+                    class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                <textarea id="comment-text" placeholder="Write your birthday wishes here..." required
+                    class="w-full p-3 border border-gray-300 rounded-md h-32 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                <button type="submit"
+                    class="bg-blue-600 text-white px-5 py-2 rounded-md hover:bg-blue-700 transition duration-300">
+                    Make Wish
+                </button>
             </form>
 
-            <div class="comments-display">
-                <h3>Wishes:</h3>
-                <div id="comments-list">
-                    <!-- Comments will be dynamically inserted here -->
+
+            <div class="comments-display mt-8 space-y-4 p-6 rounded-lg shadow-md max-w-xl mx-auto">
+                <h3 class="text-xl font-semibold">Wishes:</h3>
+                <div id="comments-list" class="space-y-3">
+                    <!-- Comments will be inserted here -->
                 </div>
             </div>
+
         </div>
     </div>
 
@@ -45,7 +83,7 @@
             <h2>Edit Comment</h2>
             <input id="edit-comment-name" placeholder="Your name here" />
             <textarea id="edit-comment-text" placeholder="Write your birthday wishes here..."></textarea>
-            <button onclick="submitEdit()">Save Changes</button>
+            <button onclick="submitEdit()" class="bg-blue-600 text-white px-5 py-2 rounded-md hover:bg-blue-700 transition duration-300">Save Changes</button>
         </div>
     </div>
 
@@ -62,16 +100,44 @@
             }
         }
 
+        let clientIp = '';
+
+        async function getClientIp() {
+            try {
+                const response = await fetch("https://api64.ipify.org?format=json");
+                const data = await response.json();
+                return data.ip;
+            } catch (error) {
+                console.error('Error fetching client IP:', error);
+                return null;
+            }
+        }
+
+        async function initApp() {
+            clientIp = await getClientIp();
+            if (clientIp) {
+                console.log(clientIp)
+                fetchComments();
+            }
+        }
+
+
+
+        initApp();
+        
+
         function displayComments(comments) {
             const commentsList = document.getElementById('comments-list');
             commentsList.innerHTML = '';
             comments.forEach(comment => {
+                console.log(comment.user_ip+":"+clientIp)
+                const canEdit = comment.user_ip === clientIp;
                 const commentElement = document.createElement('div');
-                commentElement.classList.add('comment');
+                commentElement.classList.add('bg-gray-100', 'p-4', 'rounded-md');
                 commentElement.innerHTML = `
                     <p><strong>${unescapeHtml(comment.name)}:</strong> ${unescapeHtml(comment.content)}</p>
-                    <button onclick="editComment(${comment.id}, '${escapeHtml(comment.name)}', '${escapeHtml(comment.content)}')">Edit</button>
-                `;
+                    ${canEdit ? `<button onclick="editComment(${comment.id}, '${escapeHtml(comment.name)}', '${escapeHtml(comment.content)}')" class="text-blue-600 hover:underline">Edit</button>` : ''}
+                    `;
                 commentsList.appendChild(commentElement);
             });
         }
