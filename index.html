@@ -2,48 +2,47 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Birthday Celebration Page</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Birthday Gregory Erhabor!</title>
+
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="styles.css" />
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- SwiperJS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- Open Graph (Facebook, WhatsApp, LinkedIn, etc.) -->
+    <meta property="og:title" content="🎉 Happy Birthday Gregory Erhabor!" />
+    <meta property="og:description"
+        content="Celebrate Gregory Erhabor's special day with heartfelt wishes, comments, and gifts!" />
+    <meta property="og:image" content="http://birthday.spokesmancom.org/gregerhabor5.JPG" />
+    <meta property="og:url" content="http://birthday.spokesmancom.org" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="🎉 Happy Birthday Gregory Erhabor!" />
+    <meta name="twitter:description" content="Send your love and blessings to Gregory Erhabor today!" />
+    <meta name="twitter:image" content="http://birthday.spokesmancom.org/gregerhabor5.JPG" />
+
+    <!-- Optional Favicon -->
+    <link rel="icon" href="http://birthday.spokesmancom.org/gregerhabor5.JPG" type="image/jpeg" />
 </head>
+
 
 <body>
     <div class="container">
-        <div
-            class="grid grid-cols-1 md:grid-cols-3 gap-4 p-6 bg-gradient-to-tr from-pink-50 via-white to-purple-50 rounded-xl shadow-2xl">
-            <!-- Image 1 -->
-            <div class="relative group rounded-xl overflow-hidden shadow-lg">
-                <img src="gregerhabor2.JPG" alt="Celebrant"
-                    class="w-full h-full object-cover transform transition duration-300 group-hover:scale-105" />
-            </div>
-
-            <!-- Middle Image + Text Overlay -->
-            <div class="relative rounded-xl overflow-hidden shadow-2xl">
-                <img src="gregerhabor.jpg" alt="Celebrant" class="w-full h-full object-cover brightness-90" />
-
-                <!-- Overlay Text -->
-                <div class="absolute inset-0 bg-black/20 flex flex-col items-center justify-center text-center px-4">
-                    <h1 class="text-3xl md:text-4xl font-extrabold text-white drop-shadow-lg leading-tight">
-                        Happy Birthday <br />
-                        <span
-                            class="bg-gradient-to-r from-red-300 via-pink-500 to-purple-500 text-transparent bg-clip-text">
-                            Gregory Erhabor!
-                        </span>
-                    </h1>
-                    <p class="mt-2 text-white/90 font-medium text-lg">
-                        May your day shine as brightly as your smile ✨
-                    </p>
-                </div>
-            </div>
-
-            <!-- Image 3 -->
-            <div class="relative group rounded-xl overflow-hidden shadow-lg">
-                <img src="gregerhaborwife.jpg" alt="Celebrant"
-                    class="w-full h-full object-cover transform transition duration-300 group-hover:scale-105" />
-            </div>
+        <!-- Swiper -->
+        <div class="swiper mySwiper rounded-xl shadow-2xl">
+            <div class="swiper-wrapper" id="birthdaySlides"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-pagination"></div>
         </div>
+
 
 
         <!-- <div class="gift-section">
@@ -54,21 +53,23 @@
         </div> -->
 
         <div class="comments-section">
-            <h2 class="text-xl text-center font-semibold">Write your wish</h2>
+            <h2 class="text-xl text-center font-semibold">We invite you to share what you have learned over the years.
+                Your testimonies and heartfelt prayers. Your aspirations for him, his family, and the ministry</h2>
             <form id="comment-form" class="space-y-4 bg-white p-6 rounded-lg shadow-md max-w-xl mx-auto">
                 <input id="comment-name" placeholder="Your name here"
                     class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                <textarea id="comment-text" placeholder="Write your birthday wishes here..." required
+                <textarea id="comment-text" placeholder="Write the lessons you have learnt from the celebrant here..."
+                    required
                     class="w-full p-3 border border-gray-300 rounded-md h-32 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
                 <button type="submit"
                     class="bg-blue-600 text-white px-5 py-2 rounded-md hover:bg-blue-700 transition duration-300">
-                    Make Wish
+                    Send
                 </button>
             </form>
 
 
             <div class="comments-display mt-8 space-y-4 p-6 rounded-lg shadow-md max-w-xl mx-auto">
-                <h3 class="text-xl font-semibold">Wishes:</h3>
+                <h3 class="text-xl font-semibold">Lesson Learnt:</h3>
                 <div id="comments-list" class="space-y-3">
                     <!-- Comments will be inserted here -->
                 </div>
@@ -82,8 +83,11 @@
             <span class="close" onclick="closeModal()">&times;</span>
             <h2>Edit Comment</h2>
             <input id="edit-comment-name" placeholder="Your name here" />
-            <textarea id="edit-comment-text" placeholder="Write your birthday wishes here..."></textarea>
-            <button onclick="submitEdit()" class="bg-blue-600 text-white px-5 py-2 rounded-md hover:bg-blue-700 transition duration-300">Save Changes</button>
+            <textarea id="edit-comment-text"
+                placeholder="Write what you have learnt from the celebrant here..."></textarea>
+            <button onclick="submitEdit()"
+                class="bg-blue-600 text-white px-5 py-2 rounded-md hover:bg-blue-700 transition duration-300">Save
+                Changes</button>
         </div>
     </div>
 
@@ -124,13 +128,13 @@
 
 
         initApp();
-        
+
 
         function displayComments(comments) {
             const commentsList = document.getElementById('comments-list');
             commentsList.innerHTML = '';
             comments.forEach(comment => {
-                console.log(comment.user_ip+":"+clientIp)
+                console.log(comment.user_ip + ":" + clientIp)
                 const canEdit = comment.user_ip === clientIp;
                 const commentElement = document.createElement('div');
                 commentElement.classList.add('bg-gray-100', 'p-4', 'rounded-md');
@@ -151,14 +155,26 @@
                     },
                     body: JSON.stringify(body),
                 });
+
                 const result = await response.json();
+
                 if (response.ok) {
+                    // ✅ Clear the form fields
+                    document.getElementById('comment-form').reset();
+                    // ✅ Refresh comments
                     fetchComments();
+
+
+
+                    // ✅ Show a success alert
+                    alert('Your comment has been sent! 🎉');
                 } else {
                     console.error('Error posting comment:', result);
+                    alert('Failed to send comment. Please try again.');
                 }
             } catch (error) {
                 console.error('Error posting comment:', error);
+                alert('Something went wrong. Please check your internet connection.');
             }
         }
 
@@ -190,7 +206,7 @@
             postComment({ content, name });
         });
 
-        fetchComments();
+        // fetchComments();
 
         let editingCommentId = null;
 
@@ -239,6 +255,116 @@
                 .replace(/&#039;/g, "'");
         }
     </script>
+    <script>
+        const slidesData = [
+            {
+                type: 'overlay',
+                src: 'gregerhabor.jpg',
+                title: 'Happy Birthday',
+                name: 'Gregory Erhabor!',
+                message: 'May you continue to enjoy an overflowing life from the Father ✨'
+            },
+            {
+                type: 'image',
+                src: 'gregerhabor2.JPG',
+                alt: 'Gregory Solo',
+            },
+            {
+                type: 'image',
+                src: 'gregerhaborwife.jpg',
+                alt: 'Gregory and Wife',
+            },
+            {
+                type: 'image',
+                src: 'gregerhabor3.JPG',
+                alt: 'Gregory Solo',
+            },
+            {
+                type: 'image',
+                src: 'gregerhabor4.JPG',
+                alt: 'Gregory Solo',
+            },
+            {
+                type: 'image',
+                src: 'gregerhaborwife.jpg',
+                alt: 'Gregory and Wife',
+            },
+            {
+                type: 'image',
+                src: 'gregerhabor5.JPG',
+                alt: 'Gregory Solo',
+            },
+            {
+                type: 'image',
+                src: 'gregerhabor6.JPG',
+                alt: 'Gregory Solo',
+            },
+            {
+                type: 'image',
+                src: 'gregerhaborwife.jpg',
+                alt: 'Gregory and Wife',
+            },
+
+        ];
+
+        const wrapper = document.getElementById('birthdaySlides');
+
+        slidesData.forEach(item => {
+            const slide = document.createElement('div');
+            slide.className = 'swiper-slide h-[400px] md:h-[500px] rounded-xl overflow-hidden relative';
+
+            if (item.type === 'image') {
+                slide.innerHTML = `
+        <img src="${item.src}" alt="${item.alt}" 
+          class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
+      `;
+            }
+
+            if (item.type === 'overlay') {
+                slide.innerHTML = `
+        <img src="${item.src}" alt="${item.name}" 
+          class="w-full h-full object-cover brightness-90" />
+        <div class="absolute inset-0 bg-black/20 flex flex-col items-center justify-center text-center px-4">
+          <h1 class="text-3xl md:text-4xl font-extrabold text-white drop-shadow-lg leading-tight">
+            ${item.title} <br />
+            <span class="bg-gradient-to-r from-red-300 via-pink-500 to-purple-500 text-transparent bg-clip-text">
+              ${item.name}
+            </span>
+          </h1>
+          <p class="mt-2 text-white/90 font-medium text-lg">${item.message}</p>
+        </div>
+      `;
+            }
+
+            wrapper.appendChild(slide);
+        });
+
+        new Swiper('.mySwiper', {
+            slidesPerView: 1,
+            spaceBetween: 10,
+            loop: true,
+            grabCursor: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 3,
+                    spaceBetween: 20,
+                },
+            }
+        });
+    </script>
+
 </body>
 
 </html>

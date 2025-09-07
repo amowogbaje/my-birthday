@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Comment Viewer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen py-10 px-4">
+
+  <div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-lg">
+    <h1 class="text-2xl font-bold mb-4 text-gray-800">🗣️ View Comments</h1>
+
+    <!-- Search & Limit Controls -->
+    <div class="flex gap-4 mb-6">
+      <input id="searchInput" type="text" placeholder="Search by name or content..."
+        class="flex-1 border border-gray-300 rounded px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+
+      <select id="limitSelect"
+        class="border border-gray-300 rounded px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="50">50</option>
+        <option value="100" selected>100</option>
+      </select>
+
+      <button id="searchBtn"
+        class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">Search</button>
+    </div>
+
+    <!-- Comments List -->
+    <div id="commentList" class="space-y-4"></div>
+
+    <!-- Loader -->
+    <div id="loadingIndicator" class="flex justify-center mt-6 hidden">
+      <div class="w-6 h-6 border-4 border-blue-400 border-t-transparent rounded-full animate-spin"></div>
+    </div>
+  </div>
+
+  <script>
+    const apiBaseUrl = 'https://admin.spokesmancom.org/api';
+    const apiEndpoint = apiBaseUrl+'/comments';
+    const searchInput = document.getElementById('searchInput');
+    const limitSelect = document.getElementById('limitSelect');
+    const commentList = document.getElementById('commentList');
+    const searchBtn = document.getElementById('searchBtn');
+    const loadingIndicator = document.getElementById('loadingIndicator');
+
+    let currentPage = 1;
+    let hasMore = true;
+    let isLoading = false;
+    let debounceTimeout;
+
+    function buildQuery() {
+      const search = searchInput.value.trim();
+      const limit = limitSelect.value;
+
+      const params = new URLSearchParams();
+      if (search) params.append('search', search);
+      if (limit) params.append('limit', limit);
+      params.append('page', currentPage);
+
+      return params.toString();
+    }
+
+    async function fetchComments(reset = false) {
+      if (isLoading || (!hasMore && !reset)) return;
+
+      isLoading = true;
+      loadingIndicator.classList.remove('hidden');
+
+      if (reset) {
+        commentList.innerHTML = '';
+        currentPage = 1;
+        hasMore = true;
+      }
+
+      try {
+        const response = await fetch(`${apiEndpoint}?${buildQuery()}`);
+        const data = await response.json();
+
+        if (data.data.length === 0 && currentPage === 1) {
+          commentList.innerHTML = `<p class="text-gray-500">No comments found.</p>`;
+          hasMore = false;
+        } else {
+          data.data.forEach(comment => {
+            const card = document.createElement('div');
+            card.className = 'border p-4 rounded shadow-sm bg-gray-50';
+            card.innerHTML = `
+              <h2 class="font-semibold text-blue-700">${comment.name}</h2>
+              <p class="text-gray-700">${comment.content}</p>
+              <p class="text-xs text-gray-500 mt-2">${comment.created_diff}</p>
+            `;
+            commentList.appendChild(card);
+          });
+
+          hasMore = data.meta?.current_page < data.meta?.last_page;
+          currentPage++;
+        }
+      } catch (err) {
+        console.error(err);
+        commentList.innerHTML = `<p class="text-red-600">Error loading comments.</p>`;
+      } finally {
+        isLoading = false;
+        loadingIndicator.classList.add('hidden');
+      }
+    }
+
+    function debounceFetch() {
+      clearTimeout(debounceTimeout);
+      debounceTimeout = setTimeout(() => {
+        currentPage = 1;
+        hasMore = true;
+        fetchComments(true);
+      }, 500);
+    }
+
+    // Initial load
+    window.addEventListener('DOMContentLoaded', () => fetchComments(true));
+
+    // Events
+    searchBtn.addEventListener('click', () => {
+      currentPage = 1;
+      hasMore = true;
+      fetchComments(true);
+    });
+
+    searchInput.addEventListener('input', debounceFetch);
+    limitSelect.addEventListener('change', () => {
+      currentPage = 1;
+      hasMore = true;
+      fetchComments(true);
+    });
+
+    // Infinite Scroll
+    window.addEventListener('scroll', () => {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
+        fetchComments();
+      }
+    });
+  </script>
+</body>
+</html>
